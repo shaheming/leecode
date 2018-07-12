@@ -1,6 +1,7 @@
 import copy
 
 
+# 这里踩了一个经典的皇后问题的坑
 class Solution:
     def solveNQueens(self, n):
         """
@@ -17,9 +18,10 @@ class Solution:
     def visit_row(self, line):
         col = 0
         while col < self.size:
-            if self.avaliable(line, col):
+            if self.checkValid(line, col):
                 self.board[line][col] = "Q"
                 if line == self.size - 1:
+                    self.printBoard()
                     self.result.append(copy.deepcopy(self.board))
                     self.board[line][col] = "."
                     return
@@ -28,15 +30,18 @@ class Solution:
                 self.board[line][col] = "."
             col += 1
 
-    def avaliable(self, row, col):
+    # 搜索空间的上下左右是一个难点
+    def checkValid(self, row, col):
         for c in range(self.size):
+            # 上下
             if self.board[row][c] == "Q" or self.board[c][col] == "Q":
                 return False
-            for r_1, c_1 in [[1 * c + row, 1 * c + col],
-                             [1 * c + row, -1 * c + col],
-                             [-1 * c + row, 1 * c + col],
-                             [-1 * c + row, -1 * c + col]]:
-
+            # 左上左下
+            # col = row + b => b = col_1 - row_1 => col = row + (col_1 - row_1)
+            # col = -row + b => b = col_1 + row_1 => col = - row + (col_1 + row_1)
+            # 之后需要考虑边界问题
+            for r_1, c_1 in [[c, row + col - c], [c, c + (col - row)]]:
+                print(r_1, c_1)
                 if r_1 >= 0 and \
                         c_1 >= 0 and \
                         r_1 < self.size and \
@@ -52,6 +57,18 @@ class Solution:
         print("==")
 
 
+#
 s = Solution()
 r = s.solveNQueens(4)
 print(r)
+
+
+def test(row, col):
+    size = 5
+    for c in range(size):
+        for r_1, c_1 in [[c, row + col - c], [c, c + (col - row)]]:
+            if r_1 >= 0 and c_1 >= 0 and r_1 < size and c_1 < size:
+                print(r_1, c_1)
+
+
+test(1, 0)
