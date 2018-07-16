@@ -4,7 +4,7 @@ class ListNode:
     def __init__(self, x):
         self.val = x
         self.next = None
-
+#需要给头结点加一个空结点，这样好做
 
 class Solution:
     def reverseBetween(self, head, m, n):
@@ -16,23 +16,21 @@ class Solution:
         """
         if m == n:
             return head
-        tmpHead = ListNode(0)
+
         tmpNode = ListNode(0)
         tmpPre = ListNode(0)
-        fakeHead = ListNode(0)
-        fakeHead.next = head
-        tmpNode.next = fakeHead
+        emptyHead = ListNode(0)
+        emptyHead.next = head
+        tmpNode.next = emptyHead
 
         # find m - 1
         for _ in range(m - 1):
             tmpNode.next = tmpNode.next.next
-
         # 头
         tmpHead = tmpNode.next
         tmpEnd = None
         pointer = tmpNode.next.next
         for _ in range(m, n + 1):
-            print("pointer:", pointer.val)
             if tmpEnd is None:
                 tmpEnd = pointer
             tmp = tmpPre.next
@@ -44,7 +42,7 @@ class Solution:
         tmpEnd.next = pointer
         tmpHead.next = tmpPre.next
 
-        return fakeHead.next
+        return emptyHead.next
 
 
 def print_list(listNode):
