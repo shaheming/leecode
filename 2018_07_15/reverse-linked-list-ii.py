@@ -5,7 +5,7 @@ class ListNode:
         self.val = x
         self.next = None
 #需要给头结点加一个空结点，这样好做
-
+#思路双指针一前一后，
 class Solution:
     def reverseBetween(self, head, m, n):
         """
