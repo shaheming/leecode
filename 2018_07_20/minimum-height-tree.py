@@ -1,21 +1,4 @@
 class Solution(object):
-    def buildTree(self, root, val, edges):
-        print(self.tree)
-        print(root)
-        for edge in edges:
-            if val in edge:
-                edge.remove(val)
-                root[edge[0]] = {}
-                edges.remove(edge)
-        for k, v in root.items():
-            self.buildTree(v, k, edges)
-
-    def findMaxPath(self, nodes, path, maxpath):
-        for k, v in nodes.items():
-            path.append(k)
-        if len(path) > len(maxpath):
-            maxpath = path
-        return maxpath
 
     def findMinHeightTrees(self, n, edges):
         """
