@@ -16,7 +16,8 @@ class Solution:
                 hp[i][j] = 1 if need <= 0 else need
         return hp[0][0]
 
-#核心思想: 填充法
+
+# 核心思想: 填充法
 # [
 #     [-2,-3,3],
 #     [-5,-10,1],
@@ -84,3 +85,4 @@ class Solution:
 #     [1, 1, 6, 1],
 #     [inf, inf, 1, inf]
 # ]
+
