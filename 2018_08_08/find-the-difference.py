@@ -17,3 +17,6 @@ class Solution:
             if d[1]- d[0]  > 0:
                 r.add(chr(ord('a') + i))
         return "".join(list(r))
+
+
+sorted([(1, 2), (2, 3)], key=lambda x: x[0])
