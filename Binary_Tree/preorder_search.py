@@ -25,5 +25,22 @@ class Solution:
                 stack.append(node.left)
         return r
 
+    
+    def inorderTraversal(self, root):
+        r = []
+        if root is None:
+            return r
+        stack = []
+        p = root
+        while p is not None or stack:
+            while p is not None:
+                stack.append(p)
+                p = p.left
+            p = stack.pop()
+            r.append(p.val)
+            p = p.right
+        return r
+
+
 
 
