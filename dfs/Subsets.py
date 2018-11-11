@@ -32,7 +32,9 @@ class Solution:
 #         self.dfs(nums, [], 0, res)
 #         return res
 
+
 #     def dfs(self, nums, path, index, res):
 #         res.append(path)
 #         for i in range(index, len(nums)):
 #             self.dfs(nums, path+[nums[i]], i+1, res)
+
