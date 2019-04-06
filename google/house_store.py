@@ -2,15 +2,17 @@ class Solution:
     def findClosest(self, hourses, stores):
         if len(hourses) == 0 or len(stores) == 0:
             return []
-        sorted(hourses)
-        sorted(stores)
+        stores = sorted(stores)
+        print(stores)
+        hourseDis = {}
         res = []
         for index, hourse in enumerate(hourses):
-            if index != 0 and hourse == hourses[index - 1]:
-                res.append(res[index - 1])
+            if hourse in hourseDis:
+                res.append(hourseDis[hourse])
                 continue
             else:
-                res.append(self.find(hourse, stores))
+                hourseDis[hourse] = self.find(hourse, stores)
+                res.append(hourseDis[hourse])
         return res
 
     def find(self, hourse, stores):
@@ -22,14 +24,16 @@ class Solution:
                 start = mid
             else:
                 end = mid
-        if abs(stores[start] - hourse) < abs(stores[end] - hourse):
+        print(stores[start], stores[end], hourse)
+        if abs(stores[start] - hourse) <= abs(stores[end] - hourse):
+            
             return stores[start]
         else:
             return stores[end]
 
 
-hourses = [2,4,3, 6, 12, 18]
-stores = [5,5,5,5,5, 8, 9, 20]
+hourses = [5, 10, 17]
+stores = [1, 5, 3, 7, 13, 20, 11, 12,10,16]
 s = Solution()
 r = s.findClosest(hourses, stores)
 print(r)
